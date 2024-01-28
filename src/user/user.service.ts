@@ -70,7 +70,7 @@ export class UserService {
       );
       res.redirect('/email-verification');
     } else {
-      res.redirect('/main');
+      res.redirect('/login');
     }
   }
 
