@@ -1,6 +1,6 @@
 import { UserInfo } from './userInfo.dto';
 
-export interface VerifyLogin {
+export interface VerifyEmail {
   user: UserInfo;
-  code: string;
+  code: number;
 }
