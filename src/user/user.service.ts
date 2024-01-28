@@ -6,6 +6,7 @@ import { RegisterBody } from './dto/registerBody.dto';
 import { hash } from 'bcrypt';
 import { Response } from 'express';
 import { VerificationCodeService } from './verification-code/verification-code.service';
+import { MailService } from './mail/mail.service';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,7 @@ export class UserService {
     @InjectModel(User.name)
     private userModel: Model<User>,
     private readonly verificationCodeService: VerificationCodeService,
+    private readonly mailService: MailService,
   ) {}
 
   async _getEachUser(
@@ -58,7 +60,11 @@ export class UserService {
 
     await this.userModel.create({ ...registerBody, emailVerification });
 
-    if (emailVerification) {
+    if (!emailVerification[0]) {
+      await this.mailService.sendUserConfirmation(
+        { login, email },
+        emailVerification[1],
+      );
       res.redirect('/email-verification');
     } else {
       res.redirect('/main');

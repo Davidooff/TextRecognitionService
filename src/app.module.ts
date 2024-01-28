@@ -7,7 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true, // no need to import into other modules
+    }),
     MongooseModule.forRoot(process.env.DB_URL),
     UserModule,
   ],

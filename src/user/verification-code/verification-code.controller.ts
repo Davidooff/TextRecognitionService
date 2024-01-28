@@ -1,4 +1,7 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 
 @Controller('verification-code')
-export class VerificationCodeController {}
+export class VerificationCodeController {
+  @Post('verify')
+  verify() {}
+}
