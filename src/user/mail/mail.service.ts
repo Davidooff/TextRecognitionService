@@ -6,7 +6,7 @@ import { UserInfo } from '../dto/userInfo.dto';
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async sendUserConfirmation(user: UserInfo, code: string) {
+  async sendUserConfirmation(user: UserInfo, code: number) {
     return await this.mailerService.sendMail({
       to: user.email,
       // from: '"Support Team" <support@example.com>', // override default from

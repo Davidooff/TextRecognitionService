@@ -3,11 +3,12 @@ import { VerificationCodeController } from './verification-code.controller';
 import { VerificationCodeService } from './verification-code.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from 'src/schemas/user.schema';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-    // MailModule
+    MailModule,
   ],
   controllers: [VerificationCodeController],
   providers: [VerificationCodeService],
