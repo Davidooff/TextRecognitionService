@@ -94,7 +94,7 @@ export class UserService {
     const { login } = foundUser;
     const tokens = this.jwtService.genTokens({ login, email });
     foundUser.tokens.push(tokens.refreshToken);
-    foundUser.save();
+    await foundUser.save();
 
     const aliveTimeInMs = {
       access: parseInt(process.env.ACCESS_TOKEN_ALIVE_TIME) * 1000,
