@@ -8,8 +8,8 @@ export class MainGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    const authHeader = request.headers['authorization'].split(' '); // => [Bareer, Token]
     try {
+      const authHeader = request.headers['authorization'].split(' '); // => [Bareer, Token]
       const verified = jwtVerify(authHeader[1], process.env.JWT_SECRET);
       return true;
     } catch {
